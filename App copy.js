@@ -1,5 +1,11 @@
 import * as React from 'react';
 import { useRef } from 'react';
+import 'expo-dev-client';
+
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9478268987509661~2276955268';
+
 
 
 import Constants from 'expo-constants';
@@ -7,20 +13,6 @@ import Constants from 'expo-constants';
 import { FontAwesome } from '@expo/vector-icons';
 
 
-// import { AppOpenAd, TestIds, AdEventType } from 'react-native-google-mobile-ads';
-
-// const adUnitId = __DEV__ ? TestIds.APP_OPEN : 'ca-app-pub-xxxxxxxxxxxxx/yyyyyyyyyyyyyy';
-
-// const appOpenAd = AppOpenAd.createForAdRequest(adUnitId, {
-//   requestNonPersonalizedAdsOnly: true,
-//   keywords: ['fashion', 'clothing'],
-// });
-
-// // Preload an app open ad
-// appOpenAd.load();
-
-// // Show the app open ad when user brings the app to the foreground.
-// appOpenAd.show();
 
 import {
   ScrollView,View,Text,
@@ -49,17 +41,7 @@ export default function App() {
 
   return (
     <View style={{flex: 1}}>
-   <SafeAreaView>
-    <View  style={styles.buttonRefreshArea} >
-      {/* <FontAwesome.Button style={styles.buttonRefresh} name="refresh" backgroundColor="#3b5998" onPress={onRefresh}>
-      refresh
-      </FontAwesome.Button> */}
-        {/* <FontAwesomeIcon icon="fa-sharp fa-solid fa-car-bolt" /> */}
-        <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
-       
-    </View>
-
-    </SafeAreaView>
+  
    
          
         <WebView
@@ -74,14 +56,28 @@ export default function App() {
           
         />
 
+<SafeAreaView>
+    <View  style={styles.buttonRefreshArea} >
+      {/* <FontAwesome.Button style={styles.buttonRefresh} name="refresh" backgroundColor="#3b5998" onPress={onRefresh}>
+      refresh
+      </FontAwesome.Button> */}
+        {/* <FontAwesomeIcon icon="fa-sharp fa-solid fa-car-bolt" /> */}
+        <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
+       
+    </View>
 
-     {/* <SafeAreaView style={styles.container}>
-      <AdMobBanner
-      bannerSize="smartBannerPortrait"
-      adUnitID="ca-app-pub-9478268987509661/1703090252" // Replace with your-admob-unit-id (camping site)
-      servePersonalizedAds // true or false
-      onDidFailToReceiveAdWithError={this.bannerError} /> 
-    </SafeAreaView> */}
+    </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <BannerAd 
+            style={styles.bannerStyle}
+            unitId={adUnitId}
+            size={BannerAdSize.LARGE_BANNER}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+          />
+
+</SafeAreaView>
 
 </View>
   );
@@ -90,12 +86,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
    // position : 'relative',
-   marginTop:20,
-   borderColor:'#AC9B78',
-  borderTopWidth:2,
-  borderBottomWidth:1,
+   marginTop:0,
+   borderColor:'#000039',
+   borderTopWidth:2,
+   padding:5,
+   //borderBottomWidth:1,
   justifyContent: 'center',
-  height:80,
+ // height:80
+  
+  
  
   },
   ScrollStyle: {
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
    // opacity:0.5,
      backgroundColor:'#000039',
-    marginTop:30,
+    // marginTop:30,
     padding:5
   },
   buttonRefresh:{
@@ -117,5 +116,10 @@ const styles = StyleSheet.create({
     textAlign:'center',
     
     
+  },
+  bannerStyle:{
+    justifyContent:'center',
+    textAlign:'center',
+  
   }
 });

@@ -56,21 +56,16 @@ export default function App() {
           
         />
 
-<SafeAreaView>
-    <View  style={styles.buttonRefreshArea} >
-      {/* <FontAwesome.Button style={styles.buttonRefresh} name="refresh" backgroundColor="#3b5998" onPress={onRefresh}>
-      refresh
-      </FontAwesome.Button> */}
-        {/* <FontAwesomeIcon icon="fa-sharp fa-solid fa-car-bolt" /> */}
-        <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
-       
-    </View>
-
+    <SafeAreaView>
+      <View  style={styles.buttonRefreshArea} >
+          <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
+      </View>
     </SafeAreaView>
     <SafeAreaView style={styles.container}>
       <BannerAd 
+         
             unitId={adUnitId}
-            size={BannerAdSize.FULL_BANNER}
+            size={BannerAdSize.LARGE_BANNER}
             requestOptions={{
               requestNonPersonalizedAdsOnly: true,
             }}
@@ -88,9 +83,10 @@ const styles = StyleSheet.create({
    marginTop:0,
    borderColor:'#000039',
    borderTopWidth:2,
-   borderBottomWidth:1,
+   padding:5,
+   //borderBottomWidth:1,
   justifyContent: 'center',
-  height:80
+ // height:80
   
   
  
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
   buttonRefreshArea:{
     justifyContent:'center',
    // opacity:0.5,
-     backgroundColor:'#000039',
+     backgroundColor:'#191970',
     // marginTop:30,
     padding:5
   },
@@ -114,5 +110,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     
     
-  }
+  },
+ 
 });
