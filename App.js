@@ -55,7 +55,6 @@ export default function App() {
           // style={styles.container}
           
         />
-
     <SafeAreaView>
       <View  style={styles.buttonRefreshArea} >
           <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
