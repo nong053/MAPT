@@ -70,8 +70,7 @@ export default function App() {
               requestNonPersonalizedAdsOnly: true,
             }}
           />
-
-</SafeAreaView>
+    </SafeAreaView>
 
 </View>
   );
