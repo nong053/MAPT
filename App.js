@@ -42,7 +42,11 @@ export default function App() {
   return (
     <View style={{flex: 1}}>
   
-   
+      <SafeAreaView>
+          <View  style={styles.buttonRefreshArea} >
+              <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
+          </View>
+      </SafeAreaView>
          
         <WebView
           ref = {webViewRef}
@@ -55,11 +59,7 @@ export default function App() {
           // style={styles.container}
           
         />
-    <SafeAreaView>
-      <View  style={styles.buttonRefreshArea} >
-          <FontAwesome style={styles.buttonRefresh} name={'refresh'} onPress={onRefresh} /> 
-      </View>
-    </SafeAreaView>
+    
     <SafeAreaView style={styles.container}>
       <BannerAd 
          
@@ -98,12 +98,12 @@ const styles = StyleSheet.create({
    // opacity:0.5,
      backgroundColor:'#191970',
     // marginTop:30,
-    padding:5
+    paddingTop:5
   },
   buttonRefresh:{
    
     justifyContent:'center',
-    fontSize:20,
+    fontSize:15,
     color:'#ffffff',
     textAlign:'center',
     
