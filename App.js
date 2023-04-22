@@ -4,7 +4,7 @@ import 'expo-dev-client';
 
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9478268987509661~2276955268';
+const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9478268987509661/9602170968';
 
 
 
@@ -40,7 +40,7 @@ export default function App() {
   }, [refreshing]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1,backgroundColor:'#191970'}}>
   
       <SafeAreaView>
           <View  style={styles.buttonRefreshArea} >
@@ -56,7 +56,7 @@ export default function App() {
           javaScriptEnabled={true}
           domStorageEnabled={true}
           startInLoadingState={true}
-          // style={styles.container}
+           
           
         />
     
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
    // opacity:0.5,
      backgroundColor:'#191970',
-    // marginTop:30,
+     //marginTop:30,
     paddingTop:5
   },
   buttonRefresh:{

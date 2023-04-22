@@ -1,15 +1,15 @@
 {
   "expo": {
-    "name": "MAPT",
+    "name": "เครื่องมือวิเคราะห์และวางแผนสำหรับผู้บริหาร(SWOT Analysis, Risk management, Manpower Calculation)",
     "slug": "MAPT",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff "
+      "backgroundColor": "#191970"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -18,9 +18,10 @@
       "supportsTablet": true
     },
     "android": {
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#191970"
       },
       "package": "com.dashboardweb.swot"
     },
@@ -34,6 +35,6 @@
     }
   },
   "react-native-google-mobile-ads": {
-    "android_app_id": "ca-app-pub-9478268987509661~2276955268"
+    "android_app_id": "ca-app-pub-9478268987509661~9087752372"
   }
 }
