@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useRef } from 'react';
+import { useRef,useState,useEffect   } from 'react';
 import 'expo-dev-client';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9478268987509661/9602170968';
@@ -7,11 +7,6 @@ import Constants from 'expo-constants';
 //import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { FontAwesome } from '@expo/vector-icons';
 import * as SecureStore from 'expo-secure-store';
-
-
-
-
-
 import {
   ScrollView,View,Text,
   RefreshControl,
@@ -19,18 +14,11 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-async function save(key, value) {
-  await SecureStore.setItemAsync(key, value);
-}
 
-async function getValueFor(key) {
-  let result = await SecureStore.getItemAsync(key);
-  if (result) {
-    alert("🔐 Here's your value 🔐 \n" + result);
-  } else {
-    alert('No values stored under that key.');
-  }
-}
+
+
+
+
 
 function wait(timeout) {
   return new Promise(resolve => {
@@ -45,27 +33,46 @@ function generateUUID(digits) {
   }
   return uuid.join('');
 }
-/*
-let uuidData = generateUUID(32);
-let fetchUUID = await SecureStore.getItemAsync('secure_deviceid');
-  //if user has already signed up prior
-  if (fetchUUID) {
-    uuidData = fetchUUID
+
+
+
+
+
+
+
+
+
+
+
+
+export default  function App() {
+  const [uuidGolbal, setUuidGolbal] = useState('');
+
+  async function checkUUID(key) {
+
+  
+ 
+    let uuid = generateUUID(32);
+    let fetchUUID = await SecureStore.getItemAsync(key);
+      //if user has already signed up prior
+      if (fetchUUID) {
+        uuid = fetchUUID
+      }
+        await SecureStore.setItemAsync(key,uuid);
+
+      setUuidGolbal(uuid);
+  
   }
-await SecureStore.setItemAsync('secure_deviceid', JSON.stringify(uuidData));
-console.log(uuidData)
-*/
-export default function App() {
+  
+  
+  useEffect(() => {
+    checkUUID('uuid');
+  },[]);
+ 
 
+  
+   //const UUID = generateUUID(32);
 
-
-
-
-
-   //const UUID =  Math.floor(Math.random() * 10000000000000000);
-   const UUID = generateUUID(32);
-   //save('key', 'test');
-   //console.log(getValueFor('UUID'));
 
   const [refreshing, setRefreshing] = React.useState(false);
   const webViewRef = useRef()
@@ -99,16 +106,16 @@ export default function App() {
 
           ref = {webViewRef}
           automaticallyAdjustContentInsets={false}
-          source={{ uri: 'http://dashboardweb.com/swot/index.php?uuid='+UUID+''}} 
+          source={{ uri: 'http://dashboardweb.com/swot/index.php?uuid='+uuidGolbal+'&refreshID='+generateUUID(10)}} 
           allowsFullscreenVideo={true}
           javaScriptEnabled={true}
           domStorageEnabled={true}
           startInLoadingState={true}
-           
+        
           
         />
     
-    <SafeAreaView style={styles.container}>
+    {/* <SafeAreaView style={styles.container}>
       <BannerAd 
    
             unitId={adUnitId}
@@ -117,7 +124,7 @@ export default function App() {
               requestNonPersonalizedAdsOnly: true,
             }}
           />
-    </SafeAreaView>
+    </SafeAreaView> */}
 
 </View>
   );
@@ -149,7 +156,7 @@ const styles = StyleSheet.create({
    // opacity:0.5,
      backgroundColor:'#191970',
      //marginTop:30,
-    paddingTop:5
+    paddingTop:30
   },
   buttonRefresh:{
    
