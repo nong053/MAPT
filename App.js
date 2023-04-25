@@ -6,6 +6,7 @@ const adUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-9478268987509661/9602170
 import Constants from 'expo-constants';
 //import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { FontAwesome } from '@expo/vector-icons';
+import * as SecureStore from 'expo-secure-store';
 
 
 
@@ -18,17 +19,53 @@ import {
 } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+async function save(key, value) {
+  await SecureStore.setItemAsync(key, value);
+}
+
+async function getValueFor(key) {
+  let result = await SecureStore.getItemAsync(key);
+  if (result) {
+    alert("🔐 Here's your value 🔐 \n" + result);
+  } else {
+    alert('No values stored under that key.');
+  }
+}
 
 function wait(timeout) {
   return new Promise(resolve => {
     setTimeout(resolve, timeout);
   });
 }
-
+function generateUUID(digits) {
+  let str = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVXZ';
+  let uuid = [];
+  for (let i = 0; i < digits; i++) {
+      uuid.push(str[Math.floor(Math.random() * str.length)]);
+  }
+  return uuid.join('');
+}
+/*
+let uuidData = generateUUID(32);
+let fetchUUID = await SecureStore.getItemAsync('secure_deviceid');
+  //if user has already signed up prior
+  if (fetchUUID) {
+    uuidData = fetchUUID
+  }
+await SecureStore.setItemAsync('secure_deviceid', JSON.stringify(uuidData));
+console.log(uuidData)
+*/
 export default function App() {
 
-  
-   const UUID =  Math.floor(Math.random() * 10000000000000000);
+
+
+
+
+
+   //const UUID =  Math.floor(Math.random() * 10000000000000000);
+   const UUID = generateUUID(32);
+   //save('key', 'test');
+   //console.log(getValueFor('UUID'));
 
   const [refreshing, setRefreshing] = React.useState(false);
   const webViewRef = useRef()
