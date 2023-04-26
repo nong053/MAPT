@@ -106,7 +106,7 @@ export default  function App() {
 
           ref = {webViewRef}
           automaticallyAdjustContentInsets={false}
-          source={{ uri: 'http://dashboardweb.com/swot/index.php?uuid='+uuidGolbal+'&refreshID='+generateUUID(10)}} 
+          source={{ uri: 'http://dashboardweb.com/swot/index.php?action=mobileLogin&uuidByMobile='+uuidGolbal+'&refreshID='+generateUUID(10)}} 
           allowsFullscreenVideo={true}
           javaScriptEnabled={true}
           domStorageEnabled={true}
@@ -114,7 +114,7 @@ export default  function App() {
         
           
         />
-    
+    {/* /?action=mobileLogin&uuidByMobile=555 */}
     {/* <SafeAreaView style={styles.container}>
       <BannerAd 
    
