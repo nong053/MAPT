@@ -115,7 +115,7 @@ export default  function App() {
           
         />
     {/* /?action=mobileLogin&uuidByMobile=555 */}
-    {/* <SafeAreaView style={styles.container}>
+   <SafeAreaView style={styles.container}>
       <BannerAd 
    
             unitId={adUnitId}
@@ -124,7 +124,7 @@ export default  function App() {
               requestNonPersonalizedAdsOnly: true,
             }}
           />
-    </SafeAreaView> */}
+    </SafeAreaView> 
 
 </View>
   );
@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
    // opacity:0.5,
      backgroundColor:'#191970',
      //marginTop:30,
-    paddingTop:30
+    paddingTop:5,
+    paddingBottom:5
   },
   buttonRefresh:{
    
